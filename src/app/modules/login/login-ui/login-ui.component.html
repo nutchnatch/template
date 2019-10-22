@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row justify-content-center ">
+    <div class="col-sm-8 col-lg-6 ">
+      <div class="card card-autenticatio mt-md-5">
+
+        <div class="card-header bg-primary text-white">
+          {{ "LOGIN.LOGIN_UI_COMP.HEADER" | translate }}
+        </div>
+        <!-- CARD BLOCK -->
+        <div *ngIf="userDetailsLoaded$ | async; then loggedin else notLoggedin"></div>
+        <!-- END CARD BLOCK -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--login form -->
+<ng-template #notLoggedin>
+  <div class="card-block">
+    <h4 class="card-title">{{ "LOGIN.LOGIN_UI_COMP.BLOCK_TITLE" | translate }}</h4>
+
+    <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm);" novalidate>
+
+      <div class="form-group" [ngClass]="{'has-success': loginForm.controls.username.valid, 'has-danger' : !loginForm.controls.username.valid && !loginForm.controls.username.pristine }">
+        <div class="controls">
+          <label for="username" class="form-control-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}*</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa  fa-user-circle-o" aria-hidden="true"></i></div>
+            <input type="text" class="form-control " [ngClass]="{'form-control-success': loginForm.controls.username.valid, 'form-control-danger' : !loginForm.controls.username.valid }"
+              id="usernameInput" formControlName="username" placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}'
+            />
+          </div>
+          <div [hidden]="loginForm.controls.username.valid  || loginForm.controls.username.pristine" class="form-control-feedback">
+            {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group" [ngClass]="{'has-success': loginForm.controls.password.valid, 'has-danger' : !loginForm.controls.password.valid && !loginForm.controls.password.pristine }">
+        <div class="controls">
+
+          <label for="password" class="form-control-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}*</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+            <input type="password" class="form-control" [ngClass]="{'form-control-success': loginForm.controls.password.valid, 'form-control-danger' : !loginForm.controls.password.valid }"
+              id="passwordInput" formControlName="password" placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}'
+            />
+          </div>
+          <div [hidden]="loginForm.controls.password.valid  || loginForm.controls.password.pristine" class="form-control-feedback">
+            {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb">
+        <div class="row">
+          <div class="col w-50">
+            <button type="button" class="btn btn-link btn-block">
+              {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_LOST_PASS" | translate }}
+            </button>
+          </div>
+          <div class="col w-50">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid || (formIsLoading$ | async) ">
+            <i class="fa " [ngClass]="{'fa-check':  !(formIsLoading$ | async), 'fa-spinner fa-pulse fa-fw': (formIsLoading$ | async) }" aria-hidden="true"></i> {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_SUBMIT" | translate }}                  </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="alert alert-danger" *ngIf="( httpErrorStatusText$ | async )">
+      {{ httpErrorStatusText$ | async }}
+    </div>
+    <small class="form-text">{{ "FORM.REQUIRED_MSN_DEFAULT" | translate }}</small>
+  </div>
+</ng-template>
+
+<ng-template #loggedin>
+  <div class="card-block">
+    <h6 class="card-title mb-4">
+      {{ this.fullUserName$ | async }} - {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.ALREADY_LOGGEDIN" | translate }}
+    </h6>
+    <button type="button" class="btn btn-danger float-right" routerLink="/user/logout"> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.BTN_LOGOUT" | translate }} </button>
+  </div>
+  <div class="card-footer text-muted">
+    <button *ngIf="loggedin" type="button" class="btn btn-block btn-sm btn-info" routerLink="/user/logout">
+        {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.NOT_CURRENT_USER" | translate }}  <strong>{{ this.fullUserName$ | async }}</strong>  {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.PERFORM_LOGOUT" | translate }} 
+    </button>
+  </div>
+</ng-template>

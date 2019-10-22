@@ -1,0 +1,8 @@
+<!-- breadcrumb -->
+<nav *ngIf="(breadcrumbLinks$ | async)" class="breadcrumb mb-3">
+  <span *ngFor="let link of (breadcrumbLinks$ | async); let last = last" class="breadcrumb-item">
+    <a *ngIf="!last"  href="#" [routerLink]="link.path | lowercase">{{link.label}}</a>
+    <span *ngIf="last" class="last"> {{link.label}} </span>
+  </span>
+</nav>
+<!-- END breadcrumb -->

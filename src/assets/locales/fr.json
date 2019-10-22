@@ -1,0 +1,78 @@
+{
+  "en": "English",
+  "pt": "Português",
+  "fr": "Français",
+  "TSP_UI": {
+    "SIDEBAR_COMP": {
+      "COMMUM_MENU": {
+        "HOME": "Bienvenue",
+        "ACCOUNT": "comptes",
+        "AUTORIZATION": "Autorisation",
+        "ADVANCE_SETTINGS": "Paramètres avancés"
+      },
+      "ADMIN_MENU": {
+        "ADMINISTRATOION_AREAS": "Aires d'administration",
+        "APPLICATION_DOMAIN": "Domaines d'applicatifs"
+      },
+      "ADMIN_AREA": {
+        "ADMINISTRATOION_AREAS": "Domaines d'applicatifs"
+      }
+    },
+    "LANGUAGE_SELECTER": {
+      "TITLE": "Langue"
+    }
+  },
+
+  "LOGIN": {
+    "LOGIN_UI_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Connectez vous à votre application",
+      "FORM": {
+        "USER_NAME": "Login",
+        "USER_PASSWORD": "Mot de passe",
+        "BTN_LOST_PASS": "Mot de passe oublié?",
+        "BTN_SUBMIT": "Valider"
+      },
+      "LOGGEDIN": {
+        "ALREADY_LOGGEDIN": "déjà connecté",
+        "NOT_CURRENT_USER": "si l'utilisateur n'est pas",
+        "PERFORM_LOGOUT": "cliquez ici s'il vous plaît",
+        "BTN_LOGOUT": "Connectez - Out"
+      }
+    },
+    "LOGOUT_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Déconnecter..."
+    },
+    "LOGIN_CHECK_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Vérification du statut de connexion ..."
+    }
+  },
+  "FORM": {
+    "LABEL": {
+      "NAME": "Nom",
+      "FIRST_NAME": "Prénom",
+      "USER_NAME": "Login",
+      "USER_PASSWORD": "Mot de passe",
+      "EMAIL": "E-mail",
+      "DATE": "Date",
+      "TIME": "Heure",
+      "TYPE": "Type",
+      "ROLE": "Rôle"
+    },
+    "BTN": {
+      "SUBMIT": "Soumettre",
+      "CANCEL": "Annuler",
+      "RESET": "Réinitialiser",
+      "SAVE": "Sauvegarder",
+      "UPLOAD": "Télécharger"
+    },
+    "ERROR_DEFAULT": "Quelque chose a mal tourné! S'il vous plaît réessayer plus tard",
+    "REQUIRED_MSN_DEFAULT": "* Champs obligatoires",
+    "INVALID_FIELD": "invalide!",
+    "REQUIRED_FIELD": "est obligatoire!",
+    "ERROR_NOT_FOUND": "pas trouvé!"
+  }
+  
+}

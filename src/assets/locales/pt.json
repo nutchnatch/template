@@ -1,0 +1,81 @@
+{
+  "en": "English",
+  "pt": "Português",
+  "fr": "Français",
+  "TSP_UI": {
+    "SIDEBAR_COMP": {
+      "COMMUM_MENU": {
+        "HOME": "Bem-vindo",
+        "ACCOUNT": "Contas",
+        "AUTORIZATION": "Autorizações",
+        "ADVANCE_SETTINGS": "Configurações avançadas"
+      },
+      "ADMIN_MENU": {
+        "ADMINISTRATOION_AREAS": "Áreas da Administração",
+        "APPLICATION_DOMAIN": "Domínios de Aplicativos"
+      },
+      "ADMIN_AREA": {
+        "ADMINISTRATOION_AREAS": "Áreas da Administração"
+      }
+    },
+    "LANGUAGE_SELECTER": {
+      "TITLE": "Lingua"
+    }
+  },
+
+  "LOGIN": {
+    "LOGIN_UI_COMP": {
+      "HEADER": "Autenticação",
+      "BLOCK_TITLE": "Por favor faça login para aceder à aplicação",
+      "FORM": {
+        "USER_NAME": "Login",
+        "USER_PASSWORD": "Palavra passe",
+        "BTN_LOST_PASS": "Esqueceu-se da password?",
+        "BTN_SUBMIT": "Login",
+        "USER_NAME_REQUIRED": "Login é de preenchimento obrigatório",
+        "USER_PASSWORD_REQUIRED": "Password é de preenchimento obrigatório",
+        "ERROR_DEFAULT": "Algo correu mal! Por Favor tente mais tarde.",
+        "REQUIRED_MSN_DEFAULT": "*Preenchimento Obrigatório"
+      },
+      "LOGGEDIN": {
+        "ALREADY_LOGGEDIN": "já se encontra autênticado",
+        "NOT_CURRENT_USER": "se não é o utilizador",
+        "PERFORM_LOGOUT": "por favor clique aqui",
+        "BTN_LOGOUT": "Logout"
+      }
+    },
+    "LOGOUT_COMP": {
+      "HEADER": "Autenticação",
+      "BLOCK_TITLE": "Logging out..."
+    },
+    "LOGIN_CHECK_COMP": {
+      "HEADER": "Autenticação",
+      "BLOCK_TITLE": "A verificar status do utilizador..."
+    }
+  },
+  "FORM": {
+    "LABEL": {
+      "NAME": "Nome",
+      "FIRST_NAME": "Primeiro Nome",
+      "USER_NAME": "Login",
+      "USER_PASSWORD": "Palavra passe",
+      "EMAIL": "E-mail",
+      "DATE": "Data",
+      "TIME": "Hora",
+      "TYPE": "Tipo",
+      "ROLE": "Papel"
+    },
+    "BTN": {
+      "SUBMIT": "Enviar",
+      "CANCEL": "Cancelar",
+      "RESET": "Limpar",
+      "SAVE": "Guardar",
+      "UPLOAD": "Upload"
+    },
+    "ERROR_DEFAULT": "Algo correu mal! Por Favor tente mais tarde.",
+    "REQUIRED_MSN_DEFAULT": "* Campos de preenchimento Obrigatório",
+    "INVALID_FIELD": "campo invalido!",
+    "REQUIRED_FIELD": "é obrigatório!",
+    "ERROR_NOT_FOUND": "não encontrado!"
+  }
+}

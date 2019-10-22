@@ -1,0 +1,38 @@
+// @import '.app/scss/variables';
+@import '../../../../scss/variables';
+
+
+.sidebar-wrapper {
+    padding-top: 80px;
+    min-height: calc(100vh - 50px);
+    height: calc(100vh - 50px);
+    border-right: 1px solid rgba(0, 0, 0, .05);
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 250px;
+    
+    &.open {
+        width: 250px;
+        transform: translateX(0);
+    }
+    
+}
+
+.nav-link {
+    &.active,
+    &:hover {
+        transition: all 250ms;
+        background-color: rgba(darken($brand-primary, 15%), .8);
+        color: white;
+    }
+}
+
+i.fa {
+    margin-right: 10px;
+    display: inline-block
+}
+
+.version {
+    position: absolute;
+    bottom: 10px;
+}

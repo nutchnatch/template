@@ -1,0 +1,11 @@
+.navbar {
+    top: 50px;
+}
+
+.navbar-brand {
+    @media (max-width: 769px) {
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

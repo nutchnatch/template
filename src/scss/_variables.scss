@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+$sesame: #069f5a;
+$sugar: #a41269;
+$spoc: #f08c2a;
+
+$white:  #fff;
+$black:  #000;
+$red:    #d9534f;
+$orange: #f0ad4e;
+$yellow: #ffd500;
+$green:  #5cb85c;
+$blue:   #0275d8;
+$teal:   #5bc0de;
+$pink:   #ff5b77;
+$purple: #613d7c;
+
+// Create grayscale
+$gray-dark:                 #292b2c;
+$gray:                      #464a4c;
+$gray-light:                #636c72;
+$gray-lighter:              #c6c6c6;
+$gray-lightest:             #e6e6e6;
+$gray-white:                #f9f9f9;
+
+$brand-primary:             $sesame; // #007942;
+$brand-primary-darker:      darken($brand-primary, 7%);// #007942;
+/*$brand-primary:            #5dc66a;// #007942;
+$brand-primary-darker:     #007942;*/
+$brand-success:             $green;
+$brand-info:                $teal;
+$brand-warning:             $orange;
+$brand-danger:              $red;
+

@@ -1,0 +1,7 @@
+<app-sidebar [open]="showSidenav$ | async"></app-sidebar>
+<app-main-content [sidebarOpened]="showSidenav$ | async">
+
+  <app-breadcrumb></app-breadcrumb>
+  <!--<app-loading-bars></app-loading-bars>-->
+  <ng-content></ng-content>
+</app-main-content>

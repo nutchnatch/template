@@ -1,0 +1,76 @@
+{
+  "en": "English",
+  "pt": "Português",
+  "fr": "Français",
+  "TSP_UI": {
+    "SIDEBAR_COMP": {
+      "COMMUM_MENU": {
+        "HOME": "Welcome",
+        "ACCOUNT": "Account",
+        "AUTORIZATION": "Autorization",
+        "ADVANCE_SETTINGS": "Advanced Settings"
+      },
+      "ADMIN_MENU": {
+        "ADMINISTRATOION_AREAS": "Administration Areas",
+        "APPLICATION_DOMAIN": "Application Domains"
+      },
+      "ADMIN_AREA": {
+        "ADMINISTRATOION_AREAS": "Administration Areas"
+      }
+    },
+    "LANGUAGE_SELECTER": {
+      "TITLE": "Language"
+    }
+  },
+  "LOGIN": {
+    "LOGIN_UI_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Please Login to your application",
+      "FORM": {
+        "USER_NAME": "Login",
+        "USER_PASSWORD": "Password",
+        "BTN_LOST_PASS": "Forgot password?",
+        "BTN_SUBMIT": "Login"
+      },
+      "LOGGEDIN": {
+        "ALREADY_LOGGEDIN": "Is already authenticated",
+        "NOT_CURRENT_USER": "If you are not the user",
+        "PERFORM_LOGOUT": "please click here",
+        "BTN_LOGOUT": "Logout"
+      }
+    },
+    "LOGOUT_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Logging out..."
+    },
+    "LOGIN_CHECK_COMP": {
+      "HEADER": "Autentication",
+      "BLOCK_TITLE": "Checking Login Status..."
+    }
+  },
+  "FORM": {
+    "LABEL": {
+      "NAME": "Name",
+      "FIRST_NAME": "First Name",
+      "USER_NAME": "Login",
+      "USER_PASSWORD": "Password",
+      "EMAIL": "E-mail",
+      "DATE": "Date",
+      "TIME": "Time",
+      "TYPE": "Type",
+      "ROLE": "Role"
+    },
+    "BTN": {
+      "SUBMIT": "Submit",
+      "CANCEL": "Cancel",
+      "RESET": "Reset",
+      "SAVE": "Save",
+      "UPLOAD": "Upload"
+    },
+    "ERROR_DEFAULT": "Something went wrong! please try again later",
+    "REQUIRED_MSN_DEFAULT": "* Fields required",
+    "INVALID_FIELD": "field is invalid!",
+    "REQUIRED_FIELD": "field is required!",
+    "ERROR_NOT_FOUND": "not found!"
+  }
+}

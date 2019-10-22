@@ -1,0 +1,9 @@
+.main-content {
+  padding-top: 75px;
+}
+
+.page-content-wrapper {
+    &.sidebar-opened {
+        padding-left: 250px;
+    }
+}

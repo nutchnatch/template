@@ -1,0 +1,40 @@
+<app-guarded-content >
+  
+  <div *ngIf="(listSample$ | async)" class="card">
+    <div class="card-header"> Sample List </div>
+    <div class="card-block">
+      <div *ngFor="let item of (listSample$ | async)">
+        <a href="#" (click)="getSampleById(item.id);false" >
+          {{ item.id }}
+          {{ item.identifier }}
+          {{ item.description }}
+        </a>
+      </div>
+      <div *ngIf="listLoading$ | async">Loading...</div>
+    </div>
+  </div>
+
+  <div class="mt-3 mb-3">
+    <a href="#" (click)="getSampleById(1);false"> to test a get error </a>    
+  </div>
+
+  <div *ngIf="(seletedSample$ | async)" class="card">
+    <div class="card-header"> Sample Selected </div>
+    <div class="card-block">
+      <div  *ngFor="let item of (seletedSample$ | async)">
+          {{ item.id }}
+          {{ item.identifier }}
+          {{ item.description }}
+      </div>
+      <div *ngIf="selectedLoading$ | async">Loading...</div>  
+      <div *ngIf="selectedError$ | async" class="alert alert-danger" role="alert" >
+        <strong>Oh snap!</strong>  {{ selectedError$ | async }}
+      </div>
+     
+    </div>
+  </div>
+
+  
+
+  <router-outlet></router-outlet> 
+</app-guarded-content>
