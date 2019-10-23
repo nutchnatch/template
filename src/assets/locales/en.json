@@ -2,6 +2,53 @@
   "en": "English",
   "pt": "Português",
   "fr": "Français",
+  "SUGAR":{
+    "SUGAR_SIDEBAR": {
+      "ADVANCE_SEARCH": "Advance Search",
+      "CREATE_ENVELOP": "Create Envelop"
+    },
+    "TABLE": {
+      "CARD_HEADER": {
+        "SEARCH_RESULTS": "Search Results",
+        "TABLE_OPTIONS": "Table Options",
+        "TABLE_OPT_MENU": {
+          "COMPACT_TABLE" : "Compact Table"
+        }
+      },
+      "TABLE_THEAD": {
+        "TH_NAME": "Name",
+        "TH_TYPE": "Type",
+        "TH_CREATE_DATE": "Created",
+        "TH_AUTHOR": "Author",
+        "TH_EDITED": "Edited",
+        "TH_RETENTION_STR_DATE": "Retention Start",
+        "TH_RETENTION_END_DATE": "Retention End",
+        "TH_CONFIDENCIALITY": "Confidentiality",
+        "TH_ACTIONS": "Actions",
+        "TH_LANGUAGE": "Language"
+      }
+    },
+    "METADATA_SIDEBAR": {
+      "METADATA_LABELS": {
+        "METADATA": "Metadata",
+        "FOLDERS": "Folders",
+        "FILE_LIST": "Files list"
+      },
+      "METADATA_FILE": {
+        "LABEL": "  Document Metadata",
+        "INPUT_NAME": "Name",
+        "INPUT_TYPE": "Type",
+        "INPUT_CREATE_DATE": "Created",
+        "INPUT_AUTHOR": "Author",
+        "INPUT_EDITED": "Edited",
+        "INPUT_RETENTION_STR_DATE": "Retention Start",
+        "INPUT_RETENTION_END_DATE": "Retention End",
+        "INPUT_CONFIDENCIALITY": "Confidentiality",
+        "INPUT_LANGUAGE": "Language"
+      }
+
+    }
+  },
   "TSP_UI": {
     "SIDEBAR_COMP": {
       "COMMUM_MENU": {
@@ -12,7 +59,8 @@
       },
       "ADMIN_MENU": {
         "ADMINISTRATOION_AREAS": "Administration Areas",
-        "APPLICATION_DOMAIN": "Application Domains"
+        "APPLICATION_DOMAIN": "Application Domains",
+        "SAMPLES": "Application Sample Data"
       },
       "ADMIN_AREA": {
         "ADMINISTRATOION_AREAS": "Administration Areas"
@@ -58,14 +106,15 @@
       "DATE": "Date",
       "TIME": "Time",
       "TYPE": "Type",
-      "ROLE": "Role"
+      "ROLE": "Role",
+      "SEARCH": "Search"
     },
     "BTN": {
       "SUBMIT": "Submit",
       "CANCEL": "Cancel",
       "RESET": "Reset",
       "SAVE": "Save",
-      "UPLOAD": "Upload"
+      "SEARCH": "Search"
     },
     "ERROR_DEFAULT": "Something went wrong! please try again later",
     "REQUIRED_MSN_DEFAULT": "* Fields required",

@@ -11,6 +11,6 @@ describe('LoggerService', () => {
   });
 
   it('should ...', inject([LoggerService], (service: LoggerService) => {
-    //expect(service).toBeTruthy();
+    // expect(service).toBeTruthy();
   }));
 });

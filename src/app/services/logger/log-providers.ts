@@ -1,5 +1,5 @@
-import {Options, LoggerService} from "./logger.service";
-import {LogLevel} from "./log-level";
+import {Options, LoggerService} from './logger.service';
+import {LogLevel} from './log-level';
 
 /**
  * Custom Providers if the user wants to avoid some configuration for common scenarios.

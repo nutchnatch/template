@@ -1,19 +1,27 @@
-import { Observable } from 'rxjs/Observable';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { LoggerService } from './logger/logger.service';
 import { HttpClientService } from './http-client.service';
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
+import { Response, Headers } from '@angular/http';
 
 import { RestResponse } from './../models/rest-response';
-import { RestError } from './../models/rest-error';
+import { Error } from './../models/error';
 
 @Injectable()
 export class BaseService<T> {
 
+  baseUrl = '/sugar-frontend-webapp/v1';  // URL to web user api
+  headers: HttpHeaders;
+
   constructor(
-    protected http: HttpClientService,
+    protected http: HttpClientService<T>,
     protected logger: LoggerService) { }
 
+  public getHeaders(): HttpHeaders {
+    this.headers = this.http.addDefaultHeaders();
+    return this.headers;
+  }
 
   /**
    * Handle the server call's
@@ -24,32 +32,15 @@ export class BaseService<T> {
    *
    * @memberOf BaseService
    */
-  protected handleResponse(resp: Response, mandatoryContent: boolean): Array<T> {
+  protected handleResponse(resp: any, mandatoryContent?: boolean): RestResponse<T> {
     if (resp.status === 404 || resp.status === 401 || resp.status === 403) {
-      const error = new RestError();
-      error.errorCode = resp.status;
-      error.errorMessage = resp.statusText;
-      throw Observable.throw(error);
+      throw Observable.throw(resp);
     }
 
-    const restResp: RestResponse<T> = resp.json();
-
-    if (restResp.errorCode) {
-      const error = new RestError();
-      error.errorCode = restResp.errorCode;
-      error.errorMessage = restResp.errorMessage;
-      throw Observable.throw(error);
+    if (resp.status === 404) {
+      throw Observable.throw(resp);
     }
-    // test content is not empty only if the mandatoryContent variable is set
-    if (mandatoryContent === true) {
-      if (restResp.content.length === 0) {
-        const error = new RestError();
-        error.errorCode = 'TE002';
-        error.errorMessage = 'get called but returned no result';
-        throw Observable.throw(error);
-      }
-    }
-    return restResp.content;
+    return resp;
   }
 
   /**
@@ -62,13 +53,44 @@ export class BaseService<T> {
   * @memberOf AuthenticationService
   */
 
-  protected handleError(error: Response | RestError): Observable<Object> | string {
-    if (error instanceof Response) {
-      this.logger.error('BaseService', 'the call failed: ', error.json() || 'Server error');
-      return Observable.throw(error.json() || 'Server error');
+  protected handleError(httpErrorResponse: Response | any ): Observable<any> | string {
+
+    if (httpErrorResponse.status === 400) {
+      // tslint:disable-next-line:max-line-length
+      this.logger.error('BaseService', httpErrorResponse.error.error.message ? httpErrorResponse.error.error.message : httpErrorResponse.statusText ? httpErrorResponse.statusText : 'the call failed: Server error');
+
+      const restError = new Error();
+      restError.code = '' + httpErrorResponse.status;
+      // tslint:disable-next-line:max-line-length
+      restError.message = httpErrorResponse.error.error.message ? httpErrorResponse.error.error.message : httpErrorResponse.statusText ? httpErrorResponse.statusText : 'the call failed: Server error';
+
+      return throwError(restError || 'Server error');
+
+    }
+
+    if (httpErrorResponse.status === 403 || httpErrorResponse.status === 401 || httpErrorResponse.status.toString() === '403') {
+      this.logger.error('BaseService', 'the call failed: ', httpErrorResponse || 'Server error');
+      const restError = new Error();
+      restError.code = '' + httpErrorResponse.status;
+      restError.message = httpErrorResponse.statusText;
+      // restError.stack = error.json();
+      return throwError(restError || 'Server error');
+
+    }
+
+    if (httpErrorResponse.status === 413) {
+      this.logger.error('BaseService', 'the call failed: Payload to large');
+
+      const restError = new Error();
+      restError.code = '' + httpErrorResponse.status;
+      // tslint:disable-next-line:max-line-length
+      restError.message = 'the call failed: Payload to large'; // error.json().error.message ? error.json().error.message : error.statusText;
+
+      return throwError(restError || 'Server error');
+
     } else {
       this.logger.error('BaseService', 'get called but returned no result ');
-      return Observable.throw(error);
+      return throwError(httpErrorResponse);
     }
   }
 }

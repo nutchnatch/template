@@ -1,13 +1,13 @@
 = TSP Angular Template - Starter Kit
 TSP
-:version: v1.0RC
+:version: v2.0RC WIP
 :toc: left
 :toclevels: 5
 :encoding: utf-8
 :numbered:
 :sectnums:
 :imagesdir: ./assets/images
-:sectnumlevels: 5 
+:sectnumlevels: 5
 
 
 toc::[]
@@ -21,20 +21,20 @@ This document is under development, it may change. Last updated on 06/2017
 
 ====
 
-This document is a reference to the project hosted in this repository in gitlab - https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template[Frontend - tsp-ng-template] 
+This document is a reference to the project hosted in this repository in gitlab - https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template[Frontend - tsp-ng-template]
 
 
 ## How to Run it
 
-This project was generated with https://github.com/angular/angular-cli[Angular CLI] version 1.0.0.
+This project was generated with https://github.com/angular/angular-cli[Angular CLI] version 6+.
 
 ### Develpment Server
 
 ****
-Run `*ng serve*` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
+Run `*ng serve*` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 ****
 
-or  
+or
 
 ****
 Run with proxy `*npm start*` for a dev server with proxy to API. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -46,33 +46,33 @@ Run with proxy `*npm start*` for a dev server with proxy to API. Navigate to `ht
 Run `*ng generate component component-name*` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 ****
 
-### Build  
+### Build
 
 ****
-Run `*ng build*` to build the project. The build artifacts will be stored in the `*dist/*` directory. Use the `*-prod*` flag for a production build.  
+Run `*ng build*` to build the project. The build artifacts will be stored in the `*dist/*` directory. Use the `*-prod*` flag for a production build.
 ****
 
-### Build docs  
+### Build docs
 
 ****
-Run `*npm run build:docs*` to build the project's docs. The build artifacts will be stored in the `documentation/` directory.  
+Run `*npm run build:docs*` to build the project's docs. The build artifacts will be stored in the `documentation/` directory.
 ****
 
-### Running unit tests  
+### Running unit tests
 
 ****
-Run `*npm test*` to execute the unit tests via [Karma](https://karma-runner.github.io).  
+Run `*npm test*` to execute the unit tests via [Karma](https://karma-runner.github.io).
 ****
 
-### Running end-to-end tests  
+### Running end-to-end tests
 
 ****
 Run `*ng e2e*` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).Before running the tests make sure you are serving the app via `*ng serve*`.
 ****
 
-### Further help  
+### Further help
 
-To get more help on the Angular CLI use `*ng help*` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).  
+To get more help on the Angular CLI use `*ng help*` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
 
@@ -81,15 +81,19 @@ To get more help on the Angular CLI use `*ng help*` or go check out the [Angular
 ----
 src
 |-- app
-|   |-- action
-|   |-- effects
 |   |-- models
 |   |-- modules
 |   |   |--tsp-ui
 |   |   |--login
 |   |   |--containers
-|   |-- reducers
 |   |-- services
+|   |-- store
+|   |   |-- actions
+|   |   |-- effects
+|   |   |-- reducers
+|   |   |-- states
+|   |   |-- index.ts
+|   |   |-- util.ts
 |   app.routing.module.ts
 |   app.component.html
 |   app.component.scss
@@ -107,7 +111,8 @@ src
 |-- testing
 ----
 
-http://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/uploads/f4032f20eab856819d13cbd79db4fd6b/File_Structure.PNG[File Structure - image]
+
+https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/uploads/6f725f6a398b2e3f9c4d706af181487b/File_Structure.PNG[File Structure - image]
 
 ''''
 
@@ -122,7 +127,7 @@ src
 |   |-- action
 ----
 
-**Actions** are payloads of information that send data from your application to your store. They are the __only__ source of information for the store. You send them to the store using http://redux.js.org/docs/api/Store.html#dispatch[``store.dispatch()``]. 
+**Actions** are payloads of information that send data from your application to your store. They are the __only__ source of information for the store. You send them to the store using http://redux.js.org/docs/api/Store.html#dispatch[``store.dispatch()``].
 
 Actions are plain JavaScript objects. Actions must have a ``type`` property that indicates the type of action being performed. Types should typically be defined as string constants.
 
@@ -198,7 +203,7 @@ MODULES_NAME-routing.module.ts
 ----
 
 **tsp-ui** - It contains most common components throughout the application. Such as the site warper, or the language selector.
-This module contains 'dummy' components and contains no routes 
+This module contains 'dummy' components and contains no routes
 
 **login** - Contains user-related components. Login/Authentication, Registration, Profile Area etc.
 This module has its own routes. Routes must have the prefix `user`. Ex: `user/login`.
@@ -260,7 +265,7 @@ https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/wikis/
 
 image::project-architect.jpg[https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/wikis/project-architect]
 
-== Store 
+== Store
 
 https://github.com/ngrx/store[@ngrx/store] powered state management for Angular applications, inspired by Redux.
 
@@ -280,11 +285,11 @@ https://medium.com/javascript-scene/master-the-javascript-interview-what-is-func
 
 *Project repository*: https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template[TSP ng Template]
 
-*Angular*: more about the framework used https://angular.io/[Angular 2] 
+*Angular*: more about the framework used https://angular.io/[Angular 6]
 
-*Angular CLI*: more about command line interface to help build a angular2 application https://github.com/angular/angular-cli[Angular cli] 
+*Angular CLI*: more about command line interface to help build a Angular 6 application https://github.com/angular/angular-cli[Angular cli]
 
-*@ngrx/store*: https://github.com/ngrx/store[RxJS/Store] powered state management for Angular applications, inspired by Redux 
+*@ngrx/store*: https://github.com/ngrx/store[RxJS/Store] powered state management for Angular applications, inspired by Redux
 
 *Redux*: http://redux.js.org/[Redux] is a predictable state container for JavaScript apps.
 

@@ -1,8 +1,9 @@
 {
-  "/yourapplication-frontend-webapp": {
+  "/sugar-frontend-webapp": {
     "target": "http://localhost:9010",
     "secure": false,
     "changeOrigin": true,
-    "clientLogLevel": "info"
+    "clientLogLevel": "info",
+    "limit": "7mb"
   }
 }

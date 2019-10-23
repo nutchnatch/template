@@ -1,0 +1,24 @@
+<div class="card-block card-body p-0">
+  <table id="table-sample" attr.data-name="{{'table-sample'}}" class="table table-hover table-sugar m-0">
+
+    <thead class="thead-default">
+      <tr>
+        <th>ID</th>
+        <th>Identifier</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let sample of (samplesList$ | async);" >
+        <!-- (click)="preview(doc)" -->
+        <td>{{sample.id}}</td>
+        <td>{{sample.identifier}}</td>
+        <td>{{sample.description}}</td>
+        <td> <a class="btn btn-link" (click)="preview(sample.id)" > preview </a> </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

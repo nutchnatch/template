@@ -2,6 +2,52 @@
   "en": "English",
   "pt": "Português",
   "fr": "Français",
+  "SUGAR":{
+    "SUGAR_SIDEBAR": {
+      "ADVANCE_SEARCH": "Recherche avancée",
+      "CREATE_ENVELOP": "Créer une enveloppe"
+    },
+    "TABLE": {
+      "CARD_HEADER": {
+        "SEARCH_RESULTS": "Résultats de la recherche",
+        "TABLE_OPTIONS": "Options de table",
+        "TABLE_OPT_MENU": {
+          "COMPACT_TABLE" : "Table Compacte"
+        }
+      },
+      "TABLE_THEAD": {
+        "TH_NAME": "Nom",
+        "TH_TYPE": "Type",
+        "TH_CREATE_DATE": "Création",
+        "TH_RETENTION_STR_DATE": "Début de rétention",
+        "TH_RETENTION_END_DATE": "Fin de rétention",
+        "TH_AUTHOR": "Auteur",
+        "TH_EDITED": "Édité",
+        "TH_CONFIDENCIALITY": "Confidentialité",
+        "TH_ACTIONS": "Actes",
+        "TH_LANGUAGE": "Langue"
+      }
+    },
+    "METADATA_SIDEBAR": {
+      "METADATA_LABELS": {
+        "METADATA": "Métadonnées",
+        "FOLDERS": "Pastas",
+        "FILE_LIST": "List Ficheiros"
+      },
+      "METADATA_FILE": {
+        "LABEL": "Métadonnées du document",
+        "INPUT_NAME": "Nom",
+        "INPUT_TYPE": "Type",
+        "INPUT_CREATE_DATE": "Création",
+        "INPUT_AUTHOR": "Auteur",
+        "INPUT_EDITED": "Édité",
+        "INPUT_RETENTION_STR_DATE": "Début de rétention",
+        "INPUT_RETENTION_END_DATE": "Fin de rétention",
+        "INPUT_CONFIDENCIALITY": "Confidentialité",
+        "INPUT_LANGUAGE": "Langue"
+      }
+    }
+  },
   "TSP_UI": {
     "SIDEBAR_COMP": {
       "COMMUM_MENU": {
@@ -12,7 +58,8 @@
       },
       "ADMIN_MENU": {
         "ADMINISTRATOION_AREAS": "Aires d'administration",
-        "APPLICATION_DOMAIN": "Domaines d'applicatifs"
+        "APPLICATION_DOMAIN": "Domaines d'applicatifs",
+        "SAMPLES": "Application Sample Data"
       },
       "ADMIN_AREA": {
         "ADMINISTRATOION_AREAS": "Domaines d'applicatifs"
@@ -59,14 +106,16 @@
       "DATE": "Date",
       "TIME": "Heure",
       "TYPE": "Type",
-      "ROLE": "Rôle"
+      "ROLE": "Rôle",
+      "SEARCH": "Chercher"
     },
     "BTN": {
       "SUBMIT": "Soumettre",
       "CANCEL": "Annuler",
       "RESET": "Réinitialiser",
       "SAVE": "Sauvegarder",
-      "UPLOAD": "Télécharger"
+      "UPLOAD": "Télécharger",
+      "SEARCH": "Chercher"
     },
     "ERROR_DEFAULT": "Quelque chose a mal tourné! S'il vous plaît réessayer plus tard",
     "REQUIRED_MSN_DEFAULT": "* Champs obligatoires",
@@ -74,5 +123,5 @@
     "REQUIRED_FIELD": "est obligatoire!",
     "ERROR_NOT_FOUND": "pas trouvé!"
   }
-  
+
 }

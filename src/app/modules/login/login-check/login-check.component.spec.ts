@@ -1,5 +1,5 @@
-import { LoggerService } from './../../services/logger/logger.service';
-import { RouterStub } from './../../../testing/router.stub';
+import { LoggerService } from 'app/services/logger/logger.service';
+// import { RouterStub } from 'app/testing/router.stub';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { HttpModule } from '@angular/http';
@@ -7,11 +7,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { HttpClientService } from "app/services/http-client.service";
+import { HttpClientService } from 'app/services/http-client.service';
 
 import { LoginCheckComponent } from './login-check.component';
 
-import * as fromRoot from '../../reducers';
+import * as fromStore from 'app/store';
 
 
 describe('LoginCheckComponent', () => {
@@ -22,7 +22,7 @@ describe('LoginCheckComponent', () => {
     TestBed.configureTestingModule({
       declarations: [LoginCheckComponent],
       imports: [
-        StoreModule.provideStore(fromRoot.reducers, fromRoot.State),
+        // StoreModule.provideStore(fromStore.reducers, fromStore.State),
         TranslateModule.forRoot(),
         HttpModule
       ],
@@ -30,7 +30,7 @@ describe('LoginCheckComponent', () => {
         AuthenticationService,
         HttpClientService,
         LoggerService,
-        { provide: Router, useClass: RouterStub }
+        // { provide: Router, useClass: RouterStub }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

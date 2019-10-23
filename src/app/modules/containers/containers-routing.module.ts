@@ -1,14 +1,28 @@
 import { SampleExtendComponent } from './sample-extend/sample-extend.component';
-import { AuthGuardService } from 'app/services/auth-guard.services';
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
   {
-    path: 'welcome',
+    path: 'app/dashboard',
+    component: DashboardComponent,
+    // canActivate: [AuthGuardService]
+  },
+  {
+    path: 'app/dashboard/:id',
     component: SampleExtendComponent,
-    canActivate: [AuthGuardService] }
+    data: {
+      title: 'Dashboard - Sample', type: 'DASHBOARD',
+      roles: ['SUGAR_CONFIDENTIAL', 'SUGAR_USER_ROLE', 'SUGAR_READ_USER_ROLE']
+    }
+  },
+  {
+    path: '**',
+    redirectTo: 'app/dashboard', pathMatch: 'full',
+  }
 ];
 
 /**

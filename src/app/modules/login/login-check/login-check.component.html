@@ -7,8 +7,11 @@
           {{ "LOGIN.LOGIN_CHECK_COMP.HEADER" | translate }}
         </div>
         <!-- CARD BLOCK -->
-        <div class="card-block">
-          <h6 class="card-title mb-4 mt-4">
+        <div class="card-block card-body">
+          <div class="mt-4 mb-4">
+            <app-loading-bars [relative]=true></app-loading-bars>
+          </div>
+          <h6 class="card-title mb-4 mt-4 text-center">
             {{ "LOGIN.LOGIN_CHECK_COMP.BLOCK_TITLE" | translate }}
           </h6>
         </div>

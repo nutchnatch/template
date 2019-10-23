@@ -1,73 +1,57 @@
-import { ModalExpiredSessionComponent } from 'app/modules/tsp-ui/modals/modal-expired-session/modal-expired-session.component';
+import { ToastrService } from 'ngx-toastr';
+import { Sample } from './../../../models/sample';
+import { Subscription, Observable } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Breadcrumb, Link } from 'app/models/breadcrumb';
-import { RestError } from 'app/models/rest-error';
-import { SampleEffect } from 'app/effects/sample.effect';
-import { Sample } from 'app/models/sample';
-import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { BaseComponent } from './../base/base.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import * as fromRoot from 'app/reducers';
-import * as samplesAction from 'app/actions/sample.actions';
-import * as breadcrumbAction from 'app/actions/breadcrumb.actions';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import * as fromStore from 'app/store';
+import * as breadcrumbAction from 'app/store/actions/breadcrumb.actions';
+import * as sampleAction from 'app/store/actions/sample.actions';
 
 @Component({
   selector: 'app-sample-extend',
   templateUrl: './sample-extend.component.html',
   styleUrls: ['./sample-extend.component.scss']
 })
-export class SampleExtendComponent extends BaseComponent implements OnInit {
+export class SampleExtendComponent extends BaseComponent implements OnInit , OnDestroy {
 
   private breadcrumb: Breadcrumb = new Breadcrumb;
   private linksToBreadcrumb: Link[];
-
-  private listSample$: Observable<Sample[]>;
-  private listLoading$: Observable<boolean>;
-  private listError$: Observable<RestError>;
-
-  private seletedSample$: Observable<Sample[]>;
-  private selectedLoading$: Observable<boolean>;
-  private selectedError$: Observable<RestError>;
+  private subscribeActiveRouteData: Subscription;
+  private sampleSelected$: Observable<Sample>;
 
   constructor(
-    store: Store<fromRoot.State>,
-    router: Router,
-    modalService: NgbModal,
-    private effect: SampleEffect) {
-    super(store, router, modalService);
+    public store: Store<fromStore.State>,
+    public activatedRouter: ActivatedRoute,
+    private toastr: ToastrService
+  ) {
+    super(store);
 
     this.linksToBreadcrumb = [
-      { 'path': './', 'label': 'Welcome' },
-      { 'path': '/Samples', 'label': 'Samples' },
+      { 'label' : 'Home', path: '/'},
       { 'label': 'Sample' }
     ];
     this.breadcrumb.links = this.linksToBreadcrumb;
 
-    this.listSample$ = store.select(fromRoot.getSampleList);
-    this.seletedSample$ = store.select(fromRoot.getSampleDetail);
-
-    this.listLoading$ = store.select(fromRoot.getSampleIsLoading);
-    this.selectedLoading$ = store.select(fromRoot.getSampleSelectedIsLoading);
-
-    this.listError$ = store.select(fromRoot.getSampleError);
-    this.selectedError$ = store.select(fromRoot.getSampleSelectedError);
-
+    this.sampleSelected$ = this.store.pipe(select(fromStore.getSampleSelected));
   }
 
   ngOnInit() {
     this.store.dispatch(new breadcrumbAction.PutBreadcrumbAction(this.breadcrumb));
-    this.effect.getSampleList();
+    this.subscribeActiveRouteData = this.activatedRouter.paramMap.subscribe((paramMap: ParamMap) => {
+      this.store.dispatch(new sampleAction.GetSampleByIdAction({ id: paramMap.get('id') }));
+      this.toastr.success('<strong>Action succesfull.</strong>');
+    });
   }
 
-  getSampleById(id: number) {
-    this.effect.getSampleByID(id);
+  ngOnDestroy() {
+    this.subscribeActiveRouteData.unsubscribe();
   }
 
   onError401() {
-    this.store.dispatch(new samplesAction.StopAllLoadingsAction());
+    // this.store.dispatch(new samplesAction.StopAllLoadingsAction());
   }
 }

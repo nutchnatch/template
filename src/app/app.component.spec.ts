@@ -1,4 +1,4 @@
-import { State } from './reducers/index';
+import { State } from 'app/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { StoreModule } from '@ngrx/store';
 import { HttpModule } from '@angular/http';
@@ -9,7 +9,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import * as fromRoot from './reducers';
+import * as fromStore from 'app/store';
 
 describe('AppComponent', () => {
 
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        StoreModule.provideStore(fromRoot.reducers, fromRoot.State),
+        StoreModule.provideStore(fromStore.reducers, fromStore.State),
         HttpModule,
         TranslateModule.forRoot()
       ],
@@ -53,7 +53,7 @@ describe('AppComponent', () => {
     const attribute1 = mainDiv.attributes[1];
     const attribute2 = mainDiv.attributes[2];
     expect(attribute1.name).toEqual('class', 'first div attribute should be class');
-    expect(attribute1.value).toEqual('','first div class should be empty');
+    expect(attribute1.value).toEqual('', 'first div class should be empty');
     expect(attribute2.name).toEqual('id', 'first div attribute should be id');
     expect(attribute2.value).toEqual('main', 'first div id should be main');
   }));

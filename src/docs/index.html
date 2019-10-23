@@ -487,7 +487,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="truehow-to-run-it"><a class="anchor" href="#truehow-to-run-it"></a>1. How to Run it</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 1.0.0.</p>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 6+.</p>
 </div>
 <div class="sect2">
 <h3 id="truedevelpment-server"><a class="anchor" href="#truedevelpment-server"></a>1.1. Develpment Server</h3>
@@ -574,15 +574,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre>src
 |-- app
-|   |-- action
-|   |-- effects
 |   |-- models
 |   |-- modules
 |   |   |--tsp-ui
 |   |   |--login
 |   |   |--containers
-|   |-- reducers
 |   |-- services
+|   |-- store
+|   |   |-- actions
+|   |   |-- effects
+|   |   |-- reducers
+|   |   |-- states
+|   |   |-- index.ts
+|   |   |-- util.ts
 |   app.routing.module.ts
 |   app.component.html
 |   app.component.scss
@@ -601,7 +605,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="paragraph">
-<p><a href="http://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/uploads/f4032f20eab856819d13cbd79db4fd6b/File_Structure.PNG">File Structure - image</a></p>
+<p><a href="https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template/uploads/6f725f6a398b2e3f9c4d706af181487b/File_Structure.PNG">File Structure - image</a></p>
 </div>
 <hr>
 <div class="sect2">
@@ -880,10 +884,10 @@ To achieve this result the use of functional program is essential</p>
 <p><strong>Project repository</strong>: <a href="https://world-tsp-ci-assurance.is.echonet/gitlab/Frontend/tsp-ng-template">TSP ng Template</a></p>
 </div>
 <div class="paragraph">
-<p><strong>Angular</strong>: more about the framework used <a href="https://angular.io/">Angular 2</a></p>
+<p><strong>Angular</strong>: more about the framework used <a href="https://angular.io/">Angular 6</a></p>
 </div>
 <div class="paragraph">
-<p><strong>Angular CLI</strong>: more about command line interface to help build a angular2 application <a href="https://github.com/angular/angular-cli">Angular cli</a></p>
+<p><strong>Angular CLI</strong>: more about command line interface to help build a Angular 6 application <a href="https://github.com/angular/angular-cli">Angular cli</a></p>
 </div>
 <div class="paragraph">
 <p><strong>@ngrx/store</strong>: <a href="https://github.com/ngrx/store">RxJS/Store</a> powered state management for Angular applications, inspired by Redux</p>
@@ -899,7 +903,7 @@ To achieve this result the use of functional program is essential</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-02 14:07:49 GMTDT
+Last updated 2019-07-11 14:10:09 GMTDT
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">

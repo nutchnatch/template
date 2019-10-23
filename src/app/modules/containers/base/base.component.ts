@@ -1,16 +1,13 @@
-import { Observable } from 'rxjs/Observable';
-import { ModalExpiredSessionComponent } from 'app/modules/tsp-ui/modals/modal-expired-session/modal-expired-session.component';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { RestError } from 'app/models/rest-error';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
-import * as fromRoot from 'app/reducers';
-import * as userAction from 'app/actions/user-detail.actions';
-import * as httpError from 'app/actions/http-error.actions';
+import * as fromStore from 'app/store';
+import * as httpError from 'app/store/actions/http-error.actions';
 
 @Component({
   selector: 'app-base',
@@ -28,30 +25,17 @@ export class BaseComponent {
   private userName: string;
 
   constructor(
-    protected store: Store<fromRoot.State>,
-    protected router: Router,
-    protected modalService: NgbModal
+    protected store: Store<fromStore.State>,
   ) {
 
-    this.httpError$ = store.select(fromRoot.getHttpError);
+    this.httpError$ = store.pipe(select(fromStore.getHttpError));
     this.httpError$.subscribe(error => this.errorHandler(error));
-
-    this.fullUserName$ = store.select(fromRoot.getFullUserName);
-    this.fullUserName$.subscribe((fullname) => this.fullUserName = fullname);
-
-    this.userName$ = store.select(fromRoot.getUserName);
-    this.userName$.subscribe((username) => this.userName = username);
-
   }
 
   protected errorHandler(error: RestError) {
 
     if (error.errorCode === '401') {
       this.onError401();
-      const modalRef = this.modalService.open(ModalExpiredSessionComponent);
-      modalRef.componentInstance.fullName = this.fullUserName;
-      modalRef.componentInstance.username = this.userName;
-
     } else if (error.errorCode === '403') {
       // TODO: SHOW A MODAL BOX WITH MISSING CORRECTS ROLES / AUTORIZATION
       alert('Missing Role!');

@@ -1,70 +1,100 @@
 <div class="container">
   <div class="row justify-content-center ">
-    <div class="col-sm-8 col-lg-6 ">
-      <div class="card card-autenticatio mt-md-5">
+    <div class="col-sm-6 col-lg-5 ">
+
+      <div class="card card-autenticatio mt-md-3">
 
         <div class="card-header bg-primary text-white">
-          {{ "LOGIN.LOGIN_UI_COMP.HEADER" | translate }}
+          <div class="row">
+            <div class="col-sm-6 ">
+              {{ "LOGIN.LOGIN_UI_COMP.HEADER" | translate }}
+            </div>
+            <div class="col-sm-6">
+              <div *ngIf="editScope; then scopeEdit else scopeStatic"></div>
+            </div>
+          </div>
         </div>
         <!-- CARD BLOCK -->
+
         <div *ngIf="userDetailsLoaded$ | async; then loggedin else notLoggedin"></div>
+
         <!-- END CARD BLOCK -->
       </div>
+
+
     </div>
+
   </div>
+
 </div>
 
 
 <!--login form -->
 <ng-template #notLoggedin>
-  <div class="card-block">
-    <h4 class="card-title">{{ "LOGIN.LOGIN_UI_COMP.BLOCK_TITLE" | translate }}</h4>
+  <div class="card-block card-body">
+    <!-- <h6 class="card-title mb-5 ">{{ "LOGIN.LOGIN_UI_COMP.BLOCK_TITLE" | translate }}</h6> -->
 
-    <form id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm);" novalidate>
+    <form class="mt-3" id="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm);" novalidate>
 
-      <div class="form-group" [ngClass]="{'has-success': loginForm.controls.username.valid, 'has-danger' : !loginForm.controls.username.valid && !loginForm.controls.username.pristine }">
-        <div class="controls">
-          <label for="username" class="form-control-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}*</label>
+      <div class="form-group row">
+        <!-- <div class="controls row"> -->
+        <label for="username" class="form-control-label col-3 col-form-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}<span class="text-danger">*</span></label>
+        <div class="col-9">
           <div class="input-group">
-            <div class="input-group-addon"><i class="fa  fa-user-circle-o" aria-hidden="true"></i></div>
-            <input type="text" class="form-control " [ngClass]="{'form-control-success': loginForm.controls.username.valid, 'form-control-danger' : !loginForm.controls.username.valid }"
-              id="usernameInput" formControlName="username" placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}'
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa  fa-user-circle-o" aria-hidden="true"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control " [ngClass]="{'is-valid': (loginForm.controls.username.valid && loginForm.controls.username.pristine), 'is-invalid' : (!loginForm.controls.username.valid && !loginForm.controls.username.pristine) }"
+              id="login-form-input-text-user-name" attr.data-name="{{'login-ui-form-input-text-user-name'}}" formControlName="username"
             />
-          </div>
-          <div [hidden]="loginForm.controls.username.valid  || loginForm.controls.username.pristine" class="form-control-feedback">
-            {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+            <div [hidden]="loginForm.controls.username.valid  || loginForm.controls.username.pristine" class="invalid-feedback">
+              {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+            </div>
           </div>
 
         </div>
+        <!-- </div> -->
       </div>
 
 
       <div class="form-group" [ngClass]="{'has-success': loginForm.controls.password.valid, 'has-danger' : !loginForm.controls.password.valid && !loginForm.controls.password.pristine }">
-        <div class="controls">
+        <div class="controls row">
 
-          <label for="password" class="form-control-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}*</label>
-          <div class="input-group">
-            <div class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
-            <input type="password" class="form-control" [ngClass]="{'form-control-success': loginForm.controls.password.valid, 'form-control-danger' : !loginForm.controls.password.valid }"
-              id="passwordInput" formControlName="password" placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}'
-            />
-          </div>
-          <div [hidden]="loginForm.controls.password.valid  || loginForm.controls.password.pristine" class="form-control-feedback">
-            {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+          <label for="password" class="form-control-label col-3 col-form-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}<span class="text-danger">*</span></label>
+          <div class="col-9">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                </span>
+              </div>
+              <input type="password" class="form-control" [ngClass]="{'is-valid': loginForm.controls.password.valid && loginForm.controls.password.pristine, 'is-invalid' : !loginForm.controls.password.valid && !loginForm.controls.password.pristine }"
+                id="'login-ui-form-input-password" attr.data-name="{{'login-ui-form-input-password'}}" formControlName="password"
+              />
+              <div [hidden]="loginForm.controls.password.valid  || loginForm.controls.password.pristine" class="invalid-feedback">
+                {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <div class="form-group mb">
-        <div class="row">
+      <div class="form-group" >
+        <div class="row mt-4">
           <div class="col w-50">
-            <button type="button" class="btn btn-link btn-block">
+            <a class="btn btn-link btn-block" id="login-ui-button-lost-password" attr.data-name="{{'login-ui-button-lost-password'}}">
               {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_LOST_PASS" | translate }}
-            </button>
+            </a>
           </div>
           <div class="col w-50">
-            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid || (formIsLoading$ | async) ">
-            <i class="fa " [ngClass]="{'fa-check':  !(formIsLoading$ | async), 'fa-spinner fa-pulse fa-fw': (formIsLoading$ | async) }" aria-hidden="true"></i> {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_SUBMIT" | translate }}                  </button>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid || (formIsLoading$ | async) " id="login-ui-form-button-submit"
+              attr.data-name="{{'login-ui-form-button-submit'}}">
+              <i class="fa " [ngClass]="{'fa-check':  !(formIsLoading$ | async), 'fa-spinner fa-pulse fa-fw': (formIsLoading$ | async) }"
+                aria-hidden="true"></i> {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_SUBMIT" | translate }} </button>
           </div>
         </div>
       </div>
@@ -77,15 +107,36 @@
 </ng-template>
 
 <ng-template #loggedin>
-  <div class="card-block">
-    <h6 class="card-title mb-4">
-      {{ this.fullUserName$ | async }} - {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.ALREADY_LOGGEDIN" | translate }}
+  <div class="card-block card-body">
+    <h6 class="card-title mb-4" *ngIf="(fullUserName$ | async) != null">
+      {{ fullUserName$ | async }} - {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.ALREADY_LOGGEDIN" | translate }}
     </h6>
-    <button type="button" class="btn btn-danger float-right" routerLink="/user/logout"> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.BTN_LOGOUT" | translate }} </button>
+    <button type="button" class="btn btn-success float-right ml-2" id="login-ui-button-logout-user" attr.data-name="{{'login-ui-button-logout-user'}}"
+      routerLink="app/app"> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.BTN_HOME" | translate }} </button>
+    <button type="button" class="btn btn-danger float-right" id="login-ui-button-logout-user" attr.data-name="{{'login-ui-button-logout-user'}}"
+      routerLink="app/user/logout"> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.BTN_LOGOUT" | translate }} </button>
   </div>
   <div class="card-footer text-muted">
-    <button *ngIf="loggedin" type="button" class="btn btn-block btn-sm btn-info" routerLink="/user/logout">
-        {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.NOT_CURRENT_USER" | translate }}  <strong>{{ this.fullUserName$ | async }}</strong>  {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.PERFORM_LOGOUT" | translate }} 
+    <button *ngIf="loggedin" type="button" class="btn btn-block btn-sm btn-info" id="login-ui-button-logout" attr.data-name="{{'login-ui-button-logout'}}"
+      routerLink="app/user/logout">
+      {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.NOT_CURRENT_USER" | translate }}
+      <strong>{{ this.fullUserName$ | async }}</strong> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.PERFORM_LOGOUT" | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<!-- Scope -->
+<ng-template #scopeStatic>
+  <div class="row justify-content-end text-fade">
+    <p class="col-sm-6 mr-3 mb-0 pr-0 text-right form-control-static" (click)="editScope = true">{{this.scope$ | async}}</p>
+  </div>
+</ng-template>
+<!-- edit Scope -->
+<ng-template #scopeEdit>
+  <div class="row justify-content-end mr-1">
+    <input type="text" class="col-sm-6 form-control " [(ngModel)]="scope" (ngModelChange)="updateScope($event)">
+    <button class="col-sm-2 ml-1 btn btn-sm btn-success " (click)="editScope = false">
+      <i class="fa fa-check"></i>
     </button>
   </div>
 </ng-template>

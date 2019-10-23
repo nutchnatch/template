@@ -5,12 +5,13 @@ import { Component, Directive, Injectable, Input } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 
 @Directive({
+    // tslint:disable-next-line:directive-selector
     selector: '[routerLink]',
-    host: {
-        '(click)': 'onClick()'
-    }
+    // tslint:disable-next-line:use-host-property-decorator
+    host: {'(click)': 'onClick()'}
 })
 export class RouterLinkStubDirective {
+    // tslint:disable-next-line:no-input-rename
     @Input('routerLink') linkParams: any;
     navigatedTo: any = null;
 
@@ -27,7 +28,7 @@ export class RouterStub {
     url: string;
     navigate(commands: any[], extras?: NavigationExtras) {
         if (commands && commands.length > 0) {
-            let newUrl = commands[0];
+            const newUrl = commands[0];
             if (typeof (newUrl) === 'string') {
                 this.url = newUrl;
             } else {
@@ -40,7 +41,7 @@ export class RouterStub {
 
 
 // Only implements params and part of snapshot.params
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -62,10 +63,3 @@ export class ActivatedRouteStub {
         return { params: this.testParams };
     }
 }
-
-
-/*
-Copyright 2017 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

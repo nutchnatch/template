@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GuardedContentComponent } from './modules/tsp-ui/guarded-content/guarded-content.component';
+import { GuardedContentComponent } from './modules/core/guarded-content/guarded-content.component';
 
 import { AuthGuardService } from './services/auth-guard.services';
 
 const routes: Routes = [
-	{
-		path: '',
-		redirectTo: 'welcome', pathMatch: 'full' ,
-		//component: GuardedContentComponent,
-		canActivate: [AuthGuardService]
-	},
-	{
-		path: '**',
-		component: GuardedContentComponent,
-		canActivate: [AuthGuardService]
-	}
+  {
+    path: '',
+    redirectTo: 'app', pathMatch: 'full',
+    // component: GuardedContentComponent,
+    canActivate: [AuthGuardService]
+  }
+  ,
+  {
+    path: '**',
+    component: GuardedContentComponent,
+    canActivate: [AuthGuardService]
+  }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

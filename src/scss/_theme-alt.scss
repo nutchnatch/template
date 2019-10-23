@@ -1,0 +1,23 @@
+body .theme-alt {
+   background-color: #fff;
+
+  .sidebar-wrapper,
+  .metadata-sidebar {
+    background-color: $gray-300;
+  }
+
+  .row-main-content {
+    background-color: #fff;
+  }
+
+  .breadcrumb {
+    box-shadow: 0 0 0 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding: 5px 0;
+    background-color: #fff;
+  }
+
+
+
+}

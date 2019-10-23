@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BaseComponent } from './base.component';
-import * as fromRoot from 'app/reducers';
+import * as fromStore from 'app/store';
 
 describe('BaseComponent', () => {
   let component: BaseComponent;
@@ -15,7 +15,7 @@ describe('BaseComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BaseComponent ],
       imports: [
-        StoreModule.provideStore(fromRoot.reducers, fromRoot.State),
+        StoreModule.provideStore(fromStore.reducers, fromStore.State),
         NgbModule.forRoot()
       ],
       providers: [

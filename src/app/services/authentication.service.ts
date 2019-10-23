@@ -1,14 +1,10 @@
+import { HttpHeaders } from '@angular/common/http';
 import { LoggerService } from './logger/logger.service';
 import { Injectable } from '@angular/core';
-import { Response, Headers } from '@angular/http';
+import { Response } from '@angular/http';
 import { HttpClientService } from './http-client.service';
-import { Observable } from 'rxjs/Observable';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/retry';
-
-import 'rxjs/add/observable/throw';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Credentials } from '../models/credentials';
 import { UserDetails } from '../models/user-details';
@@ -16,8 +12,8 @@ import { UserDetails } from '../models/user-details';
 @Injectable()
 export class AuthenticationService {
 
-  private userUrl = '/yourapplication-frontend-webapp/user';  // URL to web user api
-  private logoutUrl = '/yourapplication-frontend-webapp/logout';
+  public userUrl = '/sugar-frontend-webapp/v1/resources/user'; // URL to web user api
+  public logoutUrl = '/sugar-frontend-webapp/v1/resources/logout';
 
   /**
    * Creates an instance of AuthenticationService.
@@ -27,8 +23,8 @@ export class AuthenticationService {
    * @memberOf AuthenticationService
    */
   constructor(
-    private http: HttpClientService,
-    private logger: LoggerService
+    public http: HttpClientService<any>,
+    public logger: LoggerService
   ) { }
 
   /**
@@ -39,15 +35,22 @@ export class AuthenticationService {
    *
    * @memberOf AuthenticationService
    */
-  authenticate(credentials?: Credentials): Observable<UserDetails> {
-    const headers = new Headers();
+  authenticate(credentials?: Credentials, scope?: string): Observable<UserDetails> {
+    let httpOptions;
     if (credentials) {
-      const authorizationValue: string = 'Basic ' + btoa(credentials.username + ':' + credentials.password);
-      headers.append('authorization', authorizationValue);
+      const authorizationValue: string = 'Basic ' + btoa(credentials.username + '|' + scope + ':' + credentials.password);
+      httpOptions = {
+        headers: new HttpHeaders({
+          'X-Requested-With': 'XMLHttpRequest',
+          'Authorization': authorizationValue
+        })
+      };
     }
-    return this.http.get(this.userUrl, { headers: headers })
-      .map((res: Response) => res.json())
-      .catch( error => this.handleError(error) );
+    return this.http.get(this.userUrl,  httpOptions )
+      .pipe(
+        map((res: any) => res),
+        catchError((error: Response) => this.handleError(error))
+      );
   }
 
   /**
@@ -57,13 +60,13 @@ export class AuthenticationService {
    *
    * @memberOf AuthenticationService
    */
-  logout(): Observable<boolean> {
+  logout(): Observable<boolean | any> {
     this.logger.debug('AuthenticationService', 'logout called');
-    // TODO: change the GET to POST
-    return this.http.get(this.logoutUrl)
-      .map((res: Response) => { Observable.of(true); })
-      .catch( error => this.handleError(error));
-
+    return this.http.post(this.logoutUrl, {})
+      .pipe(
+        map(() => { of(true); }),
+        catchError(error => this.handleError(error))
+      );
   }
 
   /**
@@ -75,8 +78,8 @@ export class AuthenticationService {
    *
    * @memberOf AuthenticationService
    */
-  private handleError(error: Response): Observable<Object> | string {
+  public handleError(error: Response): Observable<Object> | string {
     this.logger.error('AuthenticationService', 'the call failed:', error || 'Server error');
-    return Observable.throw(error || 'Server error');
+    return throwError(error || 'Server error');
   }
 }

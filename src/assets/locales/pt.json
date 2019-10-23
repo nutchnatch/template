@@ -2,6 +2,51 @@
   "en": "English",
   "pt": "Português",
   "fr": "Français",
+  "SUGAR":{
+    "SUGAR_SIDEBAR": {
+      "ADVANCE_SEARCH": "Pesquisa Avançada",
+      "CREATE_ENVELOP": "Criar Envelop"
+    },
+    "TABLE": {
+      "CARD_HEADER": {
+        "SEARCH_RESULTS": "Resultados",
+        "TABLE_OPTIONS": "Opções da Tabela",
+        "TABLE_OPT_MENU": {
+          "COMPACT_TABLE" : "Tabele Compacta"
+        }
+      },
+      "TABLE_THEAD": {
+        "TH_NAME": "Nome",
+        "TH_TYPE": "Tipo",
+        "TH_CREATE_DATE": "Criação",
+        "TH_AUTHOR": "Autor",
+        "TH_EDITED": "Editado",
+        "TH_RETENTION_STR_DATE": "Início Retenção",
+        "TH_RETENTION_END_DATE": "Fim Retenção",
+        "TH_CONFIDENCIALITY": "Confidencialidade",
+        "TH_LANGUAGE": "Language"
+      }
+    },
+    "METADATA_SIDEBAR": {
+      "METADATA_LABELS": {
+        "METADATA": "Metadata",
+        "FOLDERS": "Pastas",
+        "FILE_LIST": "List Ficheiros"
+      },
+      "METADATA_FILE": {
+        "LABEL": "Metadata Documento",
+        "INPUT_NAME": "Nome",
+        "INPUT_TYPE": "Tipo",
+        "INPUT_CREATE_DATE": "Criação",
+        "INPUT_AUTHOR": "Autor",
+        "INPUT_EDITED": "Editado",
+        "INPUT_RETENTION_STR_DATE": "Início Retenção",
+        "INPUT_RETENTION_END_DATE": "Fim Retenção",
+        "INPUT_CONFIDENCIALITY": "Confidencialidade",
+        "INPUT_LANGUAGE": "Lingua"
+      }
+    }
+  },
   "TSP_UI": {
     "SIDEBAR_COMP": {
       "COMMUM_MENU": {
@@ -12,7 +57,8 @@
       },
       "ADMIN_MENU": {
         "ADMINISTRATOION_AREAS": "Áreas da Administração",
-        "APPLICATION_DOMAIN": "Domínios de Aplicativos"
+        "APPLICATION_DOMAIN": "Domínios de Aplicativos",
+        "SAMPLES": "Exemplo Data de Aplicativos"
       },
       "ADMIN_AREA": {
         "ADMINISTRATOION_AREAS": "Áreas da Administração"
@@ -63,14 +109,16 @@
       "DATE": "Data",
       "TIME": "Hora",
       "TYPE": "Tipo",
-      "ROLE": "Papel"
+      "ROLE": "Papel",
+      "SEARCH": "Procurar"
     },
     "BTN": {
       "SUBMIT": "Enviar",
       "CANCEL": "Cancelar",
       "RESET": "Limpar",
       "SAVE": "Guardar",
-      "UPLOAD": "Upload"
+      "UPLOAD": "Upload",
+      "SEARCH": "Procurar"
     },
     "ERROR_DEFAULT": "Algo correu mal! Por Favor tente mais tarde.",
     "REQUIRED_MSN_DEFAULT": "* Campos de preenchimento Obrigatório",

@@ -1,0 +1,12 @@
+<div class="dropdown ">
+  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">
+    <i class="fas fa-language fa-lg fa-fw"></i> {{ "TSP_UI.LANGUAGE_SELECTER.TITLE" | translate }}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a *ngFor="let lang of localesList$ | async" class="dropdown-item" href="#" [ngClass]="{'active': (currentLanguage$ | async) === lang}"
+        (click)="changeLang(lang);false">
+        {{ lang | translate }}
+        </a>
+    </div>
+</div>

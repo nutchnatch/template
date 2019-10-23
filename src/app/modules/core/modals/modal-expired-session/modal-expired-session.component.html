@@ -1,0 +1,58 @@
+<div class="modal-header bg-danger text-white">
+  <h4 class="modal-title">Session Experied!</h4>
+</div>
+<div class="modal-body">
+  <p>Hello, {{fullName}}, <strong>Yours sessions experied!</strong></p>
+  <form id="loginForm"  [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm);" novalidate>
+    <fieldset disabled>
+      <div class="form-group">
+        <div class="controls">
+          <label for="username" class="disabledTextInput">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}*</label>
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa  fa-user-circle-o" aria-hidden="true"></i></div>
+            <input type="text" class="form-control" id="usernameInput" formControlName="username"  placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_NAME" | translate }}'
+            />
+          </div>
+        </div>
+      </div>  
+    </fieldset>
+
+    <div class="form-group" [ngClass]="{'has-success': loginForm.controls.password.valid, 'has-danger' : !loginForm.controls.password.valid && !loginForm.controls.password.pristine }">
+      <div class="controls">
+
+        <label for="password" class="form-control-label">{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}*</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+          <input type="password" class="form-control" [ngClass]="{'form-control-success': loginForm.controls.password.valid, 'form-control-danger' : !loginForm.controls.password.valid }"
+            id="passwordInput" formControlName="password" placeholder='{{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }}'
+          />
+        </div>
+        <div [hidden]="loginForm.controls.password.valid  || loginForm.controls.password.pristine" class="form-control-feedback">
+          {{ "LOGIN.LOGIN_UI_COMP.FORM.USER_PASSWORD" | translate }} {{"FORM.REQUIRED_FIELD" | translate}}
+        </div>
+      </div>
+    </div>
+    <p>Please use your password again</p>
+
+    <div class="form-group mb">
+      <div class="row">
+        <div class="col w-50">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid || (formIsLoading$ | async) ">
+          <i class="fa " [ngClass]="{'fa-check':  !(formIsLoading$ | async), 'fa-spinner fa-pulse fa-fw': (formIsLoading$ | async) }" aria-hidden="true"></i> {{ "LOGIN.LOGIN_UI_COMP.FORM.BTN_SUBMIT" | translate }}                  </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="( httpErrorStatusText$ | async )">
+      {{ httpErrorStatusText$ | async }}
+    </div>
+
+  </form>
+
+</div>
+<div class="modal-footer justify-content-between">
+  <button type="button" class="btn btn-sm btn-link text-danger text-left p-0" routerLink="/user/logout" (click)="activeModal.close('Close click')">
+    {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.NOT_CURRENT_USER" | translate }}  <strong>{{ fullName }}</strong><br>  {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.PERFORM_LOGOUT" | translate }} 
+  </button>
+  <button type="button" class="btn btn-danger float-right" routerLink="/user/logout" (click)="activeModal.close('Close click')"> {{ "LOGIN.LOGIN_UI_COMP.LOGGEDIN.BTN_LOGOUT" | translate }} </button>
+</div>

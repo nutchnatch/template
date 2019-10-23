@@ -1,0 +1,15 @@
+<app-sidebar [open]="showSidenav$ | async" ></app-sidebar>
+
+
+<div class="d-flex row-main-content">
+  <div class="col pr-0 pl-0">
+
+    <app-main-content [sidebarOpened]="showSidenav$ | async" [sidebarPined]="sideBarPined$ | async">
+      <app-breadcrumb></app-breadcrumb>
+      <!--<app-loading-bars></app-loading-bars>-->
+      <ng-content></ng-content>
+    </app-main-content>
+
+  </div>
+
+</div>

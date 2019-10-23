@@ -1,12 +1,15 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SampleEffects } from 'app/store/effects/sample.effect';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { environment } from '../environments/environment'; //
 import { BaseService } from './services/base.service';
-import { SampleService } from './services/sample.service';
+
+// import { SampleService } from './services/sample.service';
 import { HttpClientService } from './services/http-client.service';
 import { AuthGuardService } from './services/auth-guard.services';
 
@@ -14,57 +17,61 @@ import { AuthGuardService } from './services/auth-guard.services';
 import { AppRoutingModule } from './app-routing.module';
 
 /* STORE */
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { compose } from '@ngrx/core/compose';
 
-import { combineReducers } from '@ngrx/store';
-import { localStorageSync } from 'ngrx-store-localstorage';
 
-import { reducer } from './reducers';
+import { reducers, metaReducers} from 'app/store';
 
 /* Global services*/
 import { LoggerService } from './services/logger/logger.service';
 import { LOG_LOGGER_PROVIDERS } from './services/logger/log-providers';
 
-// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {
   TranslateModule,
-  TranslateLoader,
-  MissingTranslationHandler
-} from '@ngx-translate/core';
+  TranslateLoader} from '@ngx-translate/core';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { TspUIModule } from './modules/tsp-ui/tsp-ui.module';
+import { CoreModule } from './modules/core/core.module';
+import { CommonUiModule } from './modules/common-ui/common-ui.module';
 import { LoginModule } from './modules/login/login.module';
 import { ContainersModule } from './modules/containers/containers.module';
 
 import { AppComponent } from './app.component';
+import { SampleService } from 'app/services/sample.service';
+import { SampleNewService } from './services/sample-new.service';
+import { RouterLinkStubDirective, RouterOutletStubComponent } from 'testing/router.stub';
+import { EffectsModule } from '@ngrx/effects';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpRedirectInterceptor } from './services/http-redirect-interceptor';
 
 
-
-export function createTranslateLoader(http: Http) {
+export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/locales/', '.json');
 }
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RouterLinkStubDirective,
+    RouterOutletStubComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
+    EffectsModule.forRoot([
+     SampleEffects
+    ]),
     /**
      * StoreModule.provideStore is imported once in the root module, accepting a reducer
      * function or object map of reducer functions. If passed an object of
@@ -72,7 +79,8 @@ export function createTranslateLoader(http: Http) {
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.provideStore(reducer),
+    StoreModule.forRoot(reducers, { metaReducers }),
+
 
     /**
     * Store devtools instrument the store retaining past versions of state
@@ -84,13 +92,24 @@ export function createTranslateLoader(http: Http) {
     *
     * See: https://github.com/zalmoxisus/redux-devtools-extension
     */
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    StoreDevtoolsModule.instrument({
+      name: 'Project Template - Angular 6 ',
+      logOnly: environment.production,
+    }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      enableHtml: true,
+      easeTime: 150
+    }),
+
     FormsModule,
-    HttpModule,
-    TspUIModule,
+    HttpClientModule,
+    CommonUiModule,
+    CoreModule,
     LoginModule,
     ContainersModule,
     AppRoutingModule
+
   ],
   providers: [
     HttpClientService,
@@ -98,7 +117,9 @@ export function createTranslateLoader(http: Http) {
     LoggerService,
     AuthGuardService,
     BaseService,
-    SampleService
+    SampleService,
+    SampleNewService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRedirectInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

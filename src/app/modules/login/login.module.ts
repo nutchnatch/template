@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TspUIModule } from '../tsp-ui/tsp-ui.module';
+import { CoreModule } from '../core/core.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
@@ -13,13 +13,13 @@ import { LogoutUiComponent } from './logout-ui/logout-ui.component';
 import { LoginCheckComponent } from './login-check/login-check.component';
 
 /**
- * Login Module 
- * 
+ * Login Module
+ *
  * Login Modules contains all logic to user performs Authentication, Logout etc.
- * 
+ *
  * Login Module Routes:
  * See {@link LoginRoutingModule}.
- *  
+ *
  * @export
  * @class LoginModule
  */
@@ -29,14 +29,14 @@ import { LoginCheckComponent } from './login-check/login-check.component';
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TspUIModule
+    CoreModule
   ],
   providers: [
     AuthenticationService
   ],
   declarations: [
-    LoginComponent, 
-    LoginUiComponent, 
+    LoginComponent,
+    LoginUiComponent,
     LogoutUiComponent,
     LoginCheckComponent
 ]

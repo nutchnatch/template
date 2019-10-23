@@ -5,13 +5,13 @@ import { StoreModule } from '@ngrx/store';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
-import * as fromRoot from '../reducers';
+import * as fromStore from 'app/store';
 
 describe('AuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.provideStore(fromRoot.reducers, fromRoot.State),
+        StoreModule.provideStore(fromStore.reducers, fromStore.State),
         HttpModule
       ],
       providers: [

@@ -1,0 +1,25 @@
+
+// @import '../../../../scss/variables-legacy';
+
+@import '../../../../scss/theme-variables';
+
+.row-main-content {
+  position: relative;
+  z-index: 100;
+  min-height:  calc(100vh - 53px);
+  // background-color: $gray-lightest;
+}
+
+.metadata-sidebar {
+  max-width: $sideBarsWidth;
+  min-width: $sideBarsWidth;
+  width: $sideBarsWidth;
+  padding-top: 75px;
+  padding-bottom: 16px;
+  min-height: calc(100vh - 51px);
+  // height: calc(100vh - 51px);
+  border-left: 1px solid rgba(0, 0, 0, .12);
+  // background-color: $gray-lightest;
+  // transform: translateX(-($sideBarsWidth) + 50px);
+  z-index: 200;
+}
